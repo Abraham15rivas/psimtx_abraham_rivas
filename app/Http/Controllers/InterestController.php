@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Interest;
 use Illuminate\Http\Request;
+use App\Http\Requests\InterestRequest;
 
 class InterestController extends Controller
 {
@@ -14,50 +15,13 @@ class InterestController extends Controller
      */
     public function index()
     {
-        //
+        return Interest::all()->toJson();
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Interest  $interest
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Interest $interest)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Interest  $interest
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Interest $interest)
-    {
-        //
+        Interest::create($request->all());
+        return 'true';
     }
 
     /**
@@ -69,7 +33,8 @@ class InterestController extends Controller
      */
     public function update(Request $request, Interest $interest)
     {
-        //
+        $interest->update($request->all());
+        return 'true';
     }
 
     /**
@@ -80,6 +45,7 @@ class InterestController extends Controller
      */
     public function destroy(Interest $interest)
     {
-        //
+        $interest->delete();
+        return 'true';
     }
 }
