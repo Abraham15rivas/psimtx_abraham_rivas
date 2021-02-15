@@ -34,6 +34,12 @@ Route::group(['middleware' => 'auth'], function() {
         'prefix' => 'admin'
     ], function() {
         Route::get('/users/all', [App\Http\Controllers\HomeController::class, 'getAllUsers']);
+        Route::get('/status/{id}', [App\Http\Controllers\HomeController::class, 'changeStatus']);
+        Route::post('/password/{id}', [App\Http\Controllers\HomeController::class, 'changePassword']);
+        // CRUD de intereses
         Route::get('/interests', [App\Http\Controllers\InterestController::class, 'index']);
+        Route::post('/interests/store', [App\Http\Controllers\InterestController::class, 'store']);
+        Route::put('/interests/update/{interest}', [App\Http\Controllers\InterestController::class, 'update']);
+        Route::delete('/interests/delete/{interest}', [App\Http\Controllers\InterestController::class, 'destroy']);
     });
 });

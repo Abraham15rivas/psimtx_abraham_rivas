@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Interest;
 use Illuminate\Http\Request;
 use App\Models\User;
-
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 class HomeController extends Controller
 {
     /**
@@ -35,6 +36,23 @@ class HomeController extends Controller
 
     public function getAllUsers()
     {
-        return User::all()->toJson();
+        return User::all()->where('role_id', '!=', 1)->toJson();
+    }
+
+    public function changeStatus($id)
+    {
+        $user = User::findOrFail($id);
+        $user->update(['status' => !$user->status]);
+        return true;
+    }
+
+    public function changePassword($id, Request $request)
+    {
+        $request->validate([
+            'password' => ['required', 'string', 'min:6', 'max:16', 'regex:/^[*.#?¿]+$/u'],
+        ]);
+        $user = User::findOrFail($id);
+        $user->update(['password' => Hash::make($request->password)]);
+        return true;
     }
 }

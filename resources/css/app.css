@@ -12,7 +12,7 @@ body {
 }
 
 html, body {
-    background-color: #db6617 ;
+    background-image: radial-gradient(circle at 22.26% 39.9%, #e6a92d 0, #ea9f27 12.5%, #ee9423 25%, #f18820 37.5%, #f37b1f 50%, #f56d21 62.5%, #f65e25 75%, #f84e2b 87.5%, #f93c32 100%);
     color: white;
     font-family: 'Nunito', sans-serif;
     font-weight: 200;
@@ -80,4 +80,8 @@ label {
 
 .link-a {
   color: white !important
+}
+
+.table-responsive {
+    max-height: 60vh;
 }

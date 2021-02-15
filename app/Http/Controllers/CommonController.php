@@ -21,7 +21,7 @@ class CommonController extends Controller
     public function showRelatedUsers()
     {
         $user = auth()->user();
-        $users = Interest::getRelatedUsers($user->interests);
+        $users = Interest::getRelatedUsers($user);
         return $users;
     }
 }
